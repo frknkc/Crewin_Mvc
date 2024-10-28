@@ -1,0 +1,14 @@
+﻿@model List<Crewin_Task.Entities.Category>
+
+<h2>Categories</h2>
+<p>Please select a category to view products.</p>
+<ul>
+    @foreach (var category in Model)
+    {
+        <li>
+            <a href="@Url.Action("Products", "Product", new { category = category.Slug })">
+                @category.Name
+            </a>
+        </li>
+    }
+</ul>

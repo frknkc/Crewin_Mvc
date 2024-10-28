@@ -1,0 +1,43 @@
+﻿@model Crewin_Task.Entities.Product
+
+@if (Model == null)
+{
+    <h2>Product Detail not found.</h2>
+}
+else
+{
+    <h2>@Model.Title</h2>
+    <img src="@Model.Thumbnail" alt="@Model.Title" style="width:350px;height:auto;" />
+    <p>Description: @Model.Description</p>
+    <p>Price: $@Model.Price</p>
+    <p>Stock: @Model.Stock</p>
+    <p>Rating: @Model.Rating</p>
+    <p>Brand: @Model.Brand</p>
+    <p>Minimum Order Quantity: @Model.MinimumOrderQuantity</p>
+    <p>Weight: @Model.Weight kg</p>
+    <h4>Features:</h4>
+    <ul>
+        <li>Return Policy: @Model.ReturnPolicy</li>
+        <li>Warranty Information: @Model.WarrantyInformation</li>
+        <li>Shipping Information: @Model.ShippingInformation</li>
+        <li>Availability Status: @Model.AvailabilityStatus</li>
+    </ul>
+
+    <h4>Additional Information:</h4>
+    <p>Created At: @Model.Meta.CreatedAt</p>
+    <p>Barcode: @Model.Meta.Barcode</p>
+    <p>QR Code: <img src="@Model.Meta.QrCode" style="width:100px;height:auto;" /></p>
+    @if (Model.Reviews != null && Model.Reviews.Any())
+    {
+        <h4>Reviews:</h4>
+        <ul>
+            @foreach (var review in Model.Reviews)
+            {
+                <li>
+                    <p><strong>@review.ReviewerName</strong> (@review.Date): @review.Rating/5</p>
+                    <p>@review.Comment</p>
+                </li>
+            }
+        </ul>
+    }
+}
